@@ -4,6 +4,7 @@ import argparse
 from models.RandomForest import RF
 from models.DecisionTree import DT
 from models.MLP import MLP
+from models.LSTM import LSTM
 
 from sklearn.datasets import load_iris
 
@@ -21,7 +22,8 @@ args = parser.parse_args()
 classifier = {
     "RF": RF(),
     "DT": DT(),
-    "MLP": MLP()
+    "MLP": MLP(),
+    "LSTM": LSTM()
 }
 
 if __name__ == "__main__":
