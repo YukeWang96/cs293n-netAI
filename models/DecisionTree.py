@@ -1,16 +1,18 @@
-import random
+#!/usr/bin/env python3
+import pandas as pd
 import numpy as np
+from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 
-class RF:
-    def __init__(self, n_estimators=20, max_depth=3):
-        print("RF Initialization, n_estimators: {}, max_depth: {}".format(n_estimators, max_depth))
-        self.model = RandomForestClassifier(n_estimators=100, criterion='entropy', max_depth=3)
+class DT:
+    def __init__(self, max_depth=3):
+        print("DT Initialization, max_depth: {}".format(max_depth))
+        self.model = DecisionTreeClassifier(criterion='entropy', max_depth=3)
         self.trained = False
 
-    def train(self, features, labels, test_size=0.5, random_state=42):
+    def train(self, features, labels, test_size=0.7, random_state=42):
         print("RF training, test size = {}, random_state = {}".format(test_size, random_state))
         X_train, X_test, y_train, y_test = train_test_split(features, labels, test_size=test_size, random_state=random_state)
         self.model.fit(X_train, y_train)
@@ -21,7 +23,7 @@ class RF:
         y_predict = self.model.predict(X_test)
         test_acc = accuracy_score(y_test, y_predict)
 
-        print("RF training, \
+        print("DT training, \
                 train_acc: {}, \
                 test_acc: {}".format(train_acc, test_acc))
 
@@ -31,9 +33,3 @@ class RF:
     def eval(self, X):
         assert self.trained
         return self.model.predict(X)
-
-
-
-# 
-# print("Accuracy is ", acc)
-#if we use RF to predict the single data point, the output is the probability of two classes.

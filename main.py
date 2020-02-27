@@ -1,6 +1,12 @@
-#!/usr/bin/env
-from model import *
+#!/usr/bin/env python3
+
 import argparse
+from models.RandomForest import RF
+from models.DecisionTree import DT
+from models.MLP import MLP
+
+from sklearn.datasets import load_iris
+
 
 # parse input argument
 parser = argparse.ArgumentParser(description='packet loss classifier')
@@ -12,9 +18,14 @@ parser.add_argument('--n_estimators', type=int, default=20, help='number of RF e
 parser.add_argument('--max_depth', type=int, default=3, help='maximum depth of [RF, DT] model, default=3')
 args = parser.parse_args()
 
+classifier = {
+    "RF": RF(),
+    "DT": DT(),
+    "MLP": MLP()
+}
+
 if __name__ == "__main__":
-    assert args.model != None
-    Net = args.model
+    assert args.model != None and args.model in classifier
+    model = classifier[args.model]
     X, y = load_iris(return_X_y=True)
-    Model = Net()
-    Model.train(X, y)
+    model.train(X, y)
