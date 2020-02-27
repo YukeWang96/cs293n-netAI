@@ -16,7 +16,7 @@ scaler.fit(X_train)
 X_train = scaler.transform(X_train)
 X_test = scaler.transform(X_test)
 
-model = MLPClassifier(solver='lbfgs', alpha=1e-5,hidden_layer_sizes=(32, 16))
+model = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(32, 16))
 model.fit(X_train, y_train)
 y_predict = model.predict(X_test)
 acc = accuracy_score(y_test, y_predict)
