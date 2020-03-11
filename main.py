@@ -27,23 +27,24 @@ parser.add_argument('--epoch', type=int, default=300, help='epoch of [LSTM] mode
 parser.add_argument('--batch_size', type=int, default=5, help='batch size of [LSTM] model, default=5')
 args = parser.parse_args()
 
-classifier = {
-    "RF": RF(n_estimators=args.n_estimators, max_depth=args.max_depth),
-    "DT": DT(max_depth=args.max_depth),
-    "MLP": MLP(max_depth=args.max_depth),
-    "LSTM": LSTM(input_dim = 4, hidden_dim = 3, output_dim=3)
-}
-
 if __name__ == "__main__":
-    assert args.model != None and args.model in classifier
+    assert args.model != None and \
+        args.model in ["RF", "DT", "MLP", "LSTM"]
 
-    # model initilization
-    model = classifier[args.model]
+    # model initialization
+    model = None
+    if args.model == "RF": 
+        model = RF(n_estimators=args.n_estimators, max_depth=args.max_depth)
+    if args.model == "DT": 
+        model = DT(max_depth=args.max_depth)
+    if args.model == "MLP": 
+        model = MLP(max_depth=args.max_depth)
+    if args.model == "LSTM": 
+        model = LSTM(input_dim = 4, hidden_dim = 3, output_dim=3)
 
     # data loading 
     # X, y = load_iris(return_X_y=True)
     X, y = dataLoader(args.data_path)
-
 
     # model training
     if args.model == "LSTM":

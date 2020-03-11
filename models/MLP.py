@@ -14,7 +14,7 @@ class MLP:
         self.trained = False
 
     def train(self, features, labels, test_size=0.7, random_state=42):
-        print("RF training, test size = {}, random_state = {}".format(test_size, random_state))
+        print("MLP training, test size = {}, random_state = {}".format(test_size, random_state))
         X_train, X_test, y_train, y_test = train_test_split(features, labels, test_size=test_size, random_state=random_state)
 
         self.model.fit(X_train, y_train)
