@@ -1,0 +1,34 @@
+=> [DT] Initialization, max_depth: 3
+=> [DT] training, test size = 0.3, random_state = 42
+8
+=> DT training,                   train_acc: 1.0,                   test_acc: 0.9629629629629629 
+=> Per Label PRF Value
+	cong		loss
+prec. 	 0.92 		 1.00
+recall 	 1.00 		 0.93
+f1 	 0.96 		 0.97
+supp. 	 36.00 		 45.00
+
+
+RF Initialization, n_estimators: 3, max_depth: 3
+RF training, test size = 0.3, random_state = 42
+RF training,                 train_acc: 0.978494623655914,                 test_acc: 0.9629629629629629
+=> Per Label PRF Value
+	cong		loss
+prec. 	 0.94 		 1.00
+recall 	 1.00 		 0.92
+f1 	 0.97 		 0.96
+sup 	 45.00 		 36.00
+
+
+=> MLP Initialization, max_depth: 3
+=> MLP training, test size = 0.3, random_state = 42
+=> MLP training,                 train_acc: 0.6612903225806451,                 test_acc: 0.6790123456790124
+=> Per Label PRF Value
+	cong		loss
+prec. 	 0.95 		 0.58
+recall 	 0.44 		 0.97
+f1 	 0.61 		 0.73
+sup 	 45.00 		 36.00
+
+

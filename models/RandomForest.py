@@ -29,7 +29,7 @@ class RF:
                 test_acc: {}".format(train_acc, test_acc))
 
         print('=> Per Label PRF Value')
-        print("\tloss\t\tcong")
+        print("\tcong\t\tloss")
         for v, i in zip(pr_value, ['prec.', 'recall', 'f1', 'sup']):
             print(i,"\t","{:.2f}".format(v[0]), "\t\t","{:.2f}".format(v[1]))
 
