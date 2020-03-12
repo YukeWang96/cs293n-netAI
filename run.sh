@@ -1,6 +1,4 @@
-# ./main.py --model DT --test_size 0.25 --random_state 0 --max_depth 3 --data_path datasets/train/shuffle.csv
-./main.py --model RF --n_estimators 2 --test_size 0.9 --random_state 0 --max_depth 3 --data_path datasets/train/shuffle.csv
-# ./main.py --model MLP --n_estimators 20 --test_size 0.8 --random_state 0 --max_depth 3 --data_path datasets/train/shuffle.csv
-
-
-# ./main.py --model LSTM --n_estimators 20 --test_size 0.25 --random_state 0 --batch_size 5
+./main.py --model DT --test_size 260 --random_state 15 --max_depth 1 --data_path datasets/train/training_mixed_loss_cong_100s.csv
+./main.py --model RF --test_size 260 --random_state 42 --n_estimators 2  --max_depth 3 --data_path datasets/train/training_mixed_loss_cong_100s.csv
+./main.py --model MLP --test_size 260 --random_state 42 --max_depth 3 --data_path datasets/train/training_mixed_loss_cong_100s.csv
+# ./main.py --model LSTM --test_size 0.25 --random_state 50 --batch_size 5 --data_path datasets/train/training_mixed_loss_cong_100s.csv

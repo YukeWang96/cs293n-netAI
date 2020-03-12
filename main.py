@@ -14,7 +14,7 @@ from models.LSTM import LSTM
 parser = argparse.ArgumentParser(description='packet loss classifier')
 parser.add_argument('--model', type=str, default=None, help='Models for classifier [DNN, LSTM, RandomForest(RF), DecisionTree(DT)]')
 parser.add_argument('--random_state', type=int, default=0, help='random state for [MLP, RF, DF] train-test data split')
-parser.add_argument('--test_size', type=float, default=0.25, help='test dataset size, default = 0.25')
+parser.add_argument('--test_size', type=int, default=0.25, help='test dataset size, default = 0.25')
 parser.add_argument('--data_path', type=str, help='test dataset size, default = 0.25')
 
 parser.add_argument('--n_estimators', type=int, default=20, help='number of [RF] estimators, default=20')
@@ -48,6 +48,9 @@ if __name__ == "__main__":
 
     # model training
     if args.model == "LSTM":
-        model.train(X, y, test_size=args.test_size, random_state=args.random_state, epoch=agrs.epoch, batch=args.batch_size)
+        model.train(X, y, test_size=args.test_size, random_state=args.random_state, epoch=args.epoch, batch=args.batch_size)
     else:
         model.train(X, y, test_size=args.test_size, random_state=args.random_state)
+    
+    print()
+    print()

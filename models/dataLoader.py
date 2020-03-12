@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-from sklearn.preprocessing import StandardScaler
-import pandas as pd
 import os
+import pandas as pd
+from sklearn.preprocessing import StandardScaler, LabelEncoder
 
 #Notice: remove the leading space of each key!!!
 def dataLoader(file_name):
@@ -9,8 +9,16 @@ def dataLoader(file_name):
         df = df[['label', 'bandwidth','latency','rtt','jitter','ipa','retrans','outoforders']]
         X = df.drop('label', axis=1)
         Y = df['label']
+
         X = X.to_numpy()
         Y = Y.to_numpy()
+
+        le = LabelEncoder()
+        le.fit(Y)
+        # print(le.classes_)
+        Y = le.transform(Y)
+        # print(Y)
+
         scaler = StandardScaler()
         scaler.fit(X)
         X = scaler.transform(X)

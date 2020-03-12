@@ -38,7 +38,7 @@ class LSTMTagger(nn.Module):
 
 class LSTM:
     def __init__(self, input_dim = 4, hidden_dim = 3, output_dim=3, lr=0.1):
-        print("LSTM Initialization, input_dim: {}, hidden_dim: {}, output_dim: {}".format(input_dim, hidden_dim, output_dim))
+        print("=> [LSTM] Initialization, input_dim: {}, hidden_dim: {}, output_dim: {}".format(input_dim, hidden_dim, output_dim))
         self.model = LSTMTagger(input_dim, hidden_dim, output_dim).double()
         self.loss_function = nn.NLLLoss()
         self.optimizer = optim.SGD(self.model.parameters(), lr=0.1)
@@ -47,7 +47,7 @@ class LSTM:
         self.test_acc = []
 
     def train(self, features, labels, test_size=0.7, random_state=42, epoch=300, batch=5):
-        print("LSTM training, test size = {}, random_state = {}".format(test_size, random_state))
+        print("=> [LSTM] training, test size = {}, random_state = {}".format(test_size, random_state))
         X_train, X_test, y_train, y_test = train_test_split(features, labels, test_size=test_size, random_state=random_state)
         
         netData_train = netDataset(X_train, y_train)
@@ -85,9 +85,9 @@ class LSTM:
             acc = accuracy_score(test_label, y)
             self.test_acc.append(acc)
 
-        print("LSTM training, \
-                train_acc: {}, \
-                test_acc: {}".format(sum(self.train_acc)/len(self.train_acc), sum(self.test_acc)/len(self.test_acc)))
+        print("=> LSTM training, \
+                 train_acc: {}, \
+                 test_acc: {}".format(sum(self.train_acc)/len(self.train_acc), sum(self.test_acc)/len(self.test_acc)))
 
         self.trained = True
 
