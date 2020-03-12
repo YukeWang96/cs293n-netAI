@@ -3,6 +3,7 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
+from sklearn.metrics import precision_recall_fscore_support
 
 class DT:
     def __init__(self, max_depth=3):
@@ -21,10 +22,16 @@ class DT:
         # sample test
         y_predict = self.model.predict(X_test)
         test_acc = accuracy_score(y_test, y_predict)
-
+        pr_value = precision_recall_fscore_support(y_test, y_predict, labels=['loss', 'cong'])
+        
         print("=> DT training, \
                   train_acc: {}, \
-                  test_acc: {}".format(train_acc, test_acc))
+                  test_acc: {} ".format(train_acc, test_acc))
+        
+        print('=> Per Label PRF Value')
+        print("\tloss\t\tcong")
+        for v, i in zip(pr_value, ['prec.', 'recall', 'f1', 'supp.']):
+            print(i,"\t","{:.2f}".format(v[0]), "\t\t", "{:.2f}".format(v[1]))
 
         self.trained = True
 

@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from sklearn.neural_network import MLPClassifier
 from sklearn.datasets import load_iris
+from sklearn.metrics import precision_recall_fscore_support
 
 class MLP:
     def __init__(self, max_depth=3):
@@ -24,10 +25,17 @@ class MLP:
         # sample test
         y_predict = self.model.predict(X_test)
         test_acc = accuracy_score(y_test, y_predict)
+        pr_value = precision_recall_fscore_support(y_test, y_predict, labels=['loss', 'cong'])
+
 
         print("=> MLP training, \
                 train_acc: {}, \
                 test_acc: {}".format(train_acc, test_acc))
+
+        print('=> Per Label PRF Value')
+        print("\tloss\t\tcong")
+        for v, i in zip(pr_value, ['prec.', 'recall', 'f1', 'sup']):
+            print(i,"\t","{:.2f}".format(v[0]), "\t\t","{:.2f}".format(v[1]))
 
         self.trained = True
 

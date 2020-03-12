@@ -13,10 +13,10 @@ def dataLoader(file_name):
         X = X.to_numpy()
         Y = Y.to_numpy()
 
-        le = LabelEncoder()
-        le.fit(Y)
+        # le = LabelEncoder()
+        # le.fit(Y)
         # print(le.classes_)
-        Y = le.transform(Y)
+        # Y = le.transform(Y)
         # print(Y)
 
         scaler = StandardScaler()
