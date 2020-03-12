@@ -6,9 +6,9 @@ from sklearn.metrics import accuracy_score
 from sklearn.metrics import precision_recall_fscore_support
 
 class RF:
-    def __init__(self, n_estimators=20, max_depth=3):
+    def __init__(self, n_estimators, max_depth):
         print("RF Initialization, n_estimators: {}, max_depth: {}".format(n_estimators, max_depth))
-        self.model = RandomForestClassifier(n_estimators=100, criterion='entropy', max_depth=3)
+        self.model = RandomForestClassifier(n_estimators=n_estimators, criterion='entropy', max_depth=max_depth)
         self.trained = False
 
     def train(self, features, labels, test_size=0.5, random_state=42):

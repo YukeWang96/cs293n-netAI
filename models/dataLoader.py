@@ -6,7 +6,19 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 #Notice: remove the leading space of each key!!!
 def dataLoader(file_name):
         df = pd.read_csv(file_name)
-        df = df[['label', 'bandwidth','latency','rtt','jitter','ipa','retrans','outoforders']]
+        all_features = [
+                        'label',
+                        # 'bandwidth',
+                        'latency',
+                        'rtt',
+                        'jitter',
+                        'ipa',
+                        'win_incs',
+                        'win_decs',
+                        'retrans',
+                        'outoforders'
+                        ]
+        df = df[all_features]
         X = df.drop('label', axis=1)
         Y = df['label']
 
@@ -19,9 +31,9 @@ def dataLoader(file_name):
         # Y = le.transform(Y)
         # print(Y)
 
-        scaler = StandardScaler()
-        scaler.fit(X)
-        X = scaler.transform(X)
+        # scaler = StandardScaler()
+        # scaler.fit(X)
+        # X = scaler.transform(X)
         return X, Y
 
 if __name__ == "__main__":
